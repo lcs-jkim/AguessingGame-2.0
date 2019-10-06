@@ -28,8 +28,15 @@ class ViewController: UIViewController {
     // Will be used to check a guess
     @IBAction func CheckGuess(_ sender: Any) {
         // Obtain the value from the text field
-        let guessText = SubmittedGuess.text!
-        let guessNumber = Int(guessText)!
+        guard let guessText = SubmittedGuess.text else {
+            speak(message: "Hey bro, what about entering a value?")
+            return
+        }
+        
+        guard let guessNumber = Int(guessText) else {
+            speak(message: "Hey, what about entering a number?")
+            return
+        }
         
         // For testing purposes, what was the guess?
         print("For testing purposes, the random number is \(targetNumber)")
