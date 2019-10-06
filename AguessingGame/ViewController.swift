@@ -28,8 +28,9 @@ class ViewController: UIViewController {
     // Will be used to check a guess
     @IBAction func CheckGuess(_ sender: Any) {
         // Obtain the value from the text field
-        guard let guessText = SubmittedGuess.text else {
-            speak(message: "Hey bro, what about entering a value?")
+        
+        guard let guessText = SubmittedGuess.text, guessText != "" else {
+            self.speak(message: "Hey bro, what about entering a value?")
             return
         }
         
@@ -37,7 +38,7 @@ class ViewController: UIViewController {
             speak(message: "Hey, what about entering a number?")
             return
         }
-        
+            
         // For testing purposes, what was the guess?
         print("For testing purposes, the random number is \(targetNumber)")
         
@@ -59,7 +60,7 @@ class ViewController: UIViewController {
         let synthesizer = AVSpeechSynthesizer()
         
         // Make an object named 'utterance', which is an instance of the class AVSpeechUtterance
-        var utterance = AVSpeechUtterance(string: message)
+        let utterance = AVSpeechUtterance(string: message)
         
         // Speak the message
         synthesizer.speak(utterance)
