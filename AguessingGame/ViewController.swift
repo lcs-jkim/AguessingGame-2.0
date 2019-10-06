@@ -21,18 +21,8 @@ class ViewController: UIViewController {
     // runs as soon as the view becomes visible
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        // class 'AVSpeechSynthesizer
-        let synthesizer = AVSpeechSynthesizer()
         
-        // Make a string that contains what we want the computer to say
-        let message = "I'm thinking of a number between 1 and 100. Guess what it is"
-        
-        // Make an object named 'utterance', which is an instance of the class AVSpeechUtterance
-        var utterance = AVSpeechUtterance(string: message)
-        
-        // Speak the message
-        synthesizer.speak(utterance)
+        speak(message: "I'm thinking of a number between 1 and 100. Guess what it is")
     }
 
     // Will be used to check a guess
@@ -46,13 +36,26 @@ class ViewController: UIViewController {
         
         // Give the appropriate feedback to the user
         if guessNumber > targetNumber {
-            print("Guess lower next time")
+            speak(message: "Guess lower next time")
         } else if guessNumber < targetNumber {
-            print("Guess higher next time")
+            speak(message: "Guess higher next time")
         } else {
-            print("You are correct")
+            speak(message: "You are correct")
         }
         
+    }
+    
+    // A function will speak whatever message is provided
+    func speak(message: String) {
+        // Do any additional setup after loading the view.
+        // class 'AVSpeechSynthesizer
+        let synthesizer = AVSpeechSynthesizer()
+        
+        // Make an object named 'utterance', which is an instance of the class AVSpeechUtterance
+        var utterance = AVSpeechUtterance(string: message)
+        
+        // Speak the message
+        synthesizer.speak(utterance)
     }
     
 }
